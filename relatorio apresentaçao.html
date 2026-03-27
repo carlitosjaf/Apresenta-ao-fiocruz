@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Apresentação Grupo de Pesquisa | Fiocruz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #e9ecef 0%, #dee2e6 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Container principal do slide */
+        .slide-container {
+            width: 1100px;
+            max-width: 95vw;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* Área de conteúdo do slide */
+        .slide-content {
+            padding: 2rem 2.5rem;
+            min-height: 550px;
+            background: #ffffff;
+            color: #1e293b;
+        }
+
+        /* Títulos e textos */
+        h1 {
+            font-size: 2.3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #0a2b3e, #1f5e3a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.01em;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            border-left: 5px solid #2c7a4d;
+            padding-left: 1rem;
+            margin: 1.5rem 0 1rem 0;
+            color: #0a2b3e;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-top: 1.2rem;
+            margin-bottom: 0.6rem;
+            color: #2c3e50;
+        }
+
+        p, li, .text-block {
+            line-height: 1.5;
+            font-size: 1.05rem;
+            margin-bottom: 0.8rem;
+            color: #2d3e50;
+        }
+
+        .highlight {
+            background: #eef2ff;
+            border-left: 4px solid #2c7a4d;
+            padding: 0.8rem 1.2rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .card {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 1rem 1.2rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .card strong {
+            color: #1f5e3a;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 8px 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background-color: #eef2ff;
+            font-weight: 600;
+        }
+
+        .badge {
+            background-color: #2c7a4d20;
+            color: #1f5e3a;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Navegação */
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f1f5f9;
+            padding: 0.8rem 2rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        button {
+            background: #2c7a4d;
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 0.6rem 1.2rem;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        button:hover {
+            background: #1e5e3a;
+            transform: translateY(-1px);
+        }
+
+        button:disabled {
+            background: #b9c2cc;
+            cursor: default;
+            transform: none;
+        }
+
+        .slide-counter {
+            font-size: 0.9rem;
+            font-weight: 500;
+            background: white;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            box-shadow: inset 0 0 0 1px #e2e8f0;
+        }
+
+        /* Responsividade */
+        @media (max-width: 750px) {
+            .slide-content {
+                padding: 1.2rem;
+            }
+            h1 {
+                font-size: 1.7rem;
+            }
+            h2 {
+                font-size: 1.4rem;
+            }
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        /* Listas */
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        li {
+            margin-bottom: 0.3rem;
+        }
+        hr {
+            margin: 1rem 0;
+            border-color: #e2e8f0;
+        }
+        .quote {
+            font-style: italic;
+            color: #334155;
+            background: #f1f5f9;
+            padding: 0.8rem 1rem;
+            border-radius: 16px;
+            margin: 0.8rem 0;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container" id="slideshow">
+    <div class="slide-content" id="slideContent">
+        <!-- O conteúdo será preenchido via JavaScript para facilitar a manutenção -->
+    </div>
+    <div class="nav-bar">
+        <button id="prevBtn" disabled>◀ Anterior</button>
+        <span class="slide-counter" id="slideCounter">1 / 1</span>
+        <button id="nextBtn">Próxima ▶</button>
+    </div>
+</div>
+
+<script>
+    // Definição dos slides (cada slide é um objeto com título e conteúdo HTML)
+    const slides = [
+        { // Slide 1 - Capa
+            title: "",
+            html: `
+                <div style="text-align: center; margin-top: 2rem;">
+                    <span class="badge">Laboratório Cardoso Fontes – IOC/Fiocruz</span>
+                    <h1 style="margin-top: 1rem;">Atividades do Grupo de Pesquisa</h1>
+                    <p style="font-size: 1.2rem; margin-bottom: 0.5rem;"><strong>Projeto:</strong> A COVID-19 em comunidades acadêmicas brasileiras: uma análise pós-pandemia</p>
+                    <hr style="width: 80px; margin: 1rem auto;">
+                    <p><strong>Roberta Pires Corrêa</strong> · <strong>Paulo Roberto Stephens</strong> · <strong>Carlos Junior Alves de Freitas</strong></p>
+                    <p>Bolsista PIBIT | Graduando em Psicologia</p>
+                    <p style="margin-top: 2rem;">Março de 2026</p>
+                </div>
+            `
+        },
+        { // Slide 2 - Projeto em linhas gerais
+            title: "O Projeto",
+            html: `
+                <h2>📌 A COVID-19 em comunidades acadêmicas brasileiras</h2>
+                <p><strong>Objetivo geral:</strong> Investigar os impactos da pandemia na saúde mental, produtividade acadêmica e condições de permanência de estudantes de pós‑graduação, com recorte de gênero.</p>
+                <div class="grid-2">
+                    <div class="card"><strong>🎓 Amostra</strong><br>4.125 mulheres de todas as regiões do Brasil</div>
+                    <div class="card"><strong>📅 Período de coleta</strong><br>2020 – 2021 (período crítico da pandemia)</div>
+                    <div class="card"><strong>🔬 Abordagem</strong><br>Quali‑quantitativa (dados estatísticos + relatos abertos)</div>
+                    <div class="card"><strong>🏛️ Instituição</strong><br>Laboratório Cardoso Fontes – IOC/Fiocruz</div>
+                </div>
+                <div class="highlight">
+                    <strong>🎯 Artigo em construção:</strong><br>
+                    <em>“Para além da pandemia: desigualdades estruturais, cuidado e sofrimento psíquico na experiência de mulheres na pós‑graduação brasileira”</em>
+                </div>
+            `
+        },
+        { // Slide 3 - Equipe e papéis
+            title: "Equipe de Pesquisa",
+            html: `
+                <h2>Organização do trabalho</h2>
+                <ul>
+                    <li><strong>Dr. Paulo Roberto Stephens</strong> – pesquisador responsável, orientação ética e institucional.</li>
+                    <li><strong>Dra. Roberta Pires Corrêa</strong> – coordenação das reuniões, estrutura do artigo, análise qualitativa.</li>
+                    <li><strong>Carlos Junior Alves de Freitas</strong> – revisão do questionário, organização dos dados, tabelas, redação de partes do artigo, encaminhamentos éticos.</li>
+                </ul>
+                <p>Reuniões presenciais semanais + encontros remotos de alinhamento.</p>
+            `
+        },
+        { // Slide 4 - Atividades realizadas (visão geral)
+            title: "Atividades Desenvolvidas",
+            html: `
+                <h2>📋 Eixos de trabalho</h2>
+                <div class="grid-2">
+                    <div class="card"><strong> Revisão bibliográfica</strong><br>Artigos, CGEE, PNPG 2025-2029, IBGE, DIEESE.</div>
+                    <div class="card"><strong> Revisão do questionário</strong><br>Feito a Redução e reorganização das perguntas, Padronização metodológica e inclusão de novos eixos 
+Resultando em um instrumento mais claro, consistente e aplicável</div>
+                    <div class="card"><strong> Análise de dados</strong><br>Tabelas quantitativas + categorização temática dos relatos (5 eixos).</div>
+                    <div class="card"><strong> Artigo em construção</strong><br>Estrutura definida, resultados preliminares, referências selecionadas.</div>
+                    <div class="card"><strong> Encaminhamentos éticos</strong><br>Submissão à Plataforma Brasil, TCLE atualizado, Termo de Sigilo.</div>
+                    <div class="card"><strong> Automação</strong><br>Google Apps Script para auxilio na geração de códigos do questionario.</div>
+                </div>
+            `
+        },
+        { // Slide 5 - Revisão do questionário: análise e melhorias
+            title: "Revisão do Questionário",
+            html: `
+                <h2>Diagnóstico e aprimoramento</h2>
+                <p><strong>Problemas identificados no instrumento original:</strong></p>
+                <ul>
+                    <li>Mais de 50 perguntas → tempo >20 min → risco de abandono</li>
+                    <li>Redundâncias (perguntas repetidas)</li>
+                    <li>Escalas Likert sem âncoras (ex.: 0–4 sem descrição)</li>
+                    <li>Ausência de perguntas sobre <strong>perspectivas de futuro</strong> (essencial para o artigo)</li>
+                </ul>
+                <p><strong>Versão enxuta proposta (aprovada):</strong></p>
+                <ul>
+                    <li>✅ 39 perguntas obrigatórias, tempo estimado 10 minutos</li>
+                    <li>✅ Escalas ancoradas em todos os pontos (0=Nenhuma … 4=Muito alta)</li>
+                    <li>✅ Novo bloco: “Reflexões sobre o futuro” (permanência, desistência, políticas para mulheres)</li>
+                    <li>✅ Módulos opcionais preservados (COVID longa, estratégias de enfrentamento)</li>
+                </ul>
+                <div class="highlight">📄 Matriz de decisão documentada no Drive e anexada à Plataforma Brasil.</div>
+            `
+        },
+        { // Slide 6 - Automação e TCLE
+            title: "Automação e Procedimentos Éticos",
+            html: `
+                <h2> Script Google Apps Script</h2>
+                <p>Foi desenvolvido um script que gera automaticamente o formulário completo com seções, perguntas(que tem que ser escritas e definidas pelo usuário), escalas e lógica de ramificação. O script permite recriar o questionário, garantindo padronização e economia de tempo.</p>
+                <h2>📜 TCLE e Plataforma Brasil</h2>
+                <ul>
+                    <li>TCLE atualizado com canais de apoio (CVV – 188, atendimento psicológico institucional).</li>
+                    <li>Garantia de anonimização: e‑mails excluídos após registro de consentimento.</li>
+                    <li>Termo de Confidencialidade e Sigilo assinado digitalmente por todos os membros.</li>
+                    <li>Projeto submetido à Plataforma Brasil em <strong>09/03/2026</strong> (aguardando parecer).</li>
+                </ul>
+            `
+        },
+        { // Slide 7 - Dados quantitativos (tabelas principais)
+            title: "Dados Quantitativos – Síntese",
+            html: `
+                <h2>📊 Perfil das participantes (n=4.125)</h2>
+                <table>
+                    <tr><th>Característica</th><th>%</th></tr>
+                    <tr><td>Brancas</td><td>62,9%</td></tr>
+                    <tr><td>Pardas</td><td>27,9%</td></tr>
+                    <tr><td>Pretas</td><td>9,1%</td></tr>
+                    <tr><td>Idade 18‑30 anos</td><td>50,5%</td></tr>
+                    <tr><td>Idade 31‑40 anos</td><td>33,0%</td></tr>
+                    <tr><td>Instituição pública</td><td>96%</td></tr>
+                </table>
+                <h2>📌 Condições acadêmicas e socioeconômicas</h2>
+                <ul>
+                    <li>Bolsistas: 54,3% (CAPES: 35,2% do total)</li>
+                    <li>Licença do trabalho para cursar pós‑graduação: 90,5%</li>
+                    <li>Mães: 36% da amostra; 17,3% são a principal responsável pelos filhos</li>
+                    <li>Impacto alto da pandemia na vida acadêmica: 76,3% (escala 4‑5)</li>
+                </ul>
+            `
+        },
+        { // Slide 8 - Saúde mental e apoio institucional
+            title: "Saúde Mental e Suporte Institucional",
+            html: `
+                <h2>Sofrimento psíquico</h2>
+                <ul>
+                    <li>Ansiedade: 49,3%</li>
+                    <li>Depressão: 17,2%</li>
+                    <li>Pânico: 5,6%</li>
+                    <li>Desmotivação: 82,9%</li>
+                    <li>Dificuldade de concentração: 82,9%</li>
+                    <li>Insônia: 63,9%</li>
+                    <li>Automedicação: 15,1%</li>
+                </ul>
+                <h2>Suporte institucional</h2>
+                <ul>
+                    <li>Precisaram de apoio psicológico: 73,6%</li>
+                    <li>Procuraram ajuda profissional: apenas 35,3%</li>
+                    <li>Coordenação não ofereceu apoio: 20,5%</li>
+                    <li>Não solicitaram apoio: 43,0%</li>
+                </ul>
+                <div class="quote">“A desmotivação tem dias que me consome e não tem sido fácil alimentar o sonho de se formar pesquisador no nosso país no cenário atual.” (Participante)</div>
+            `
+        },
+        { // Slide 9 - Análise qualitativa (categorias)
+            title: "Análise Qualitativa – Vozes das Mulheres",
+            html: `
+                <h2>📖 Categorias temáticas (5 eixos)</h2>
+                <ol>
+                    <li><strong>Impactos acadêmicos da pandemia</strong> – interrupção de campo, atrasos, paralisia produtiva.</li>
+                    <li><strong>Sobrecarga doméstica, maternidade e desigualdades de gênero</strong> – mães solo, fechamento de creches, divisão sexual do trabalho.</li>
+                    <li><strong>Sofrimento psíquico na pós‑graduação</strong> – ansiedade, depressão, culpa, automedicação.</li>
+                    <li><strong>Precarização econômica da formação científica</strong> – ausência de bolsa, cortes, impossibilidade de buscar ajuda.</li>
+                    <li><strong>Fragilidades institucionais da pós‑graduação</strong> – falta de empatia, rigidez de prazos, pressão por produtividade.</li>
+                </ol>
+                <div class="highlight">Exemplo de relato – Categoria 2 (Sobrecarga):<br>“Sou mãe solo e sem rede de apoio não durmo para fazer a pesquisa e mesmo assim não consigo produzir.”</div>
+            `
+        },
+        { // Slide 10 - Artigo em construção (detalhes)
+            title: "Artigo: Para além da pandemia",
+            html: `
+                <h2>📄 Estrutura do manuscrito</h2>
+                <ul>
+                    <li>Introdução (7 parágrafos: contexto, impactos na pesquisa, desigualdades de gênero, panorama da PG, lacuna, atualidade, objetivo).</li>
+                    <li>Metodologia (quali‑quantitativa, análise temática – Fontoura, 2011).</li>
+                    <li>Resultados e Discussão: 6 eixos (perfil, impactos acadêmicos, sobrecarga/gênero, sofrimento psíquico, precarização, fragilidades institucionais).</li>
+                    <li>Conclusão: síntese, limitações, implicações para políticas institucionais.</li>
+                </ul>
+                <p><strong>Referências selecionadas:</strong> Staniscuaski et al. (2021); Corrêa et al. (2022); PNPG 2025-2029; IBGE (2019); DIEESE (2025); Entre outras.</p>
+                <div class="card"><strong>🎯 Objetivo do artigo:</strong> Analisar como a pandemia evidenciou e intensificou desigualdades estruturais (cuidado, sofrimento psíquico, apoio institucional) a partir da articulação entre dados quantitativos e relatos de 4.125 mulheres.</div>
+            `
+        },
+        { // Slide 11 - Produtos entregues
+            title: "Produtos Parciais",
+            html: `
+                <h2>Entregáveis já concluídos</h2>
+                <ul>
+                    <li>Planilha de periódicos (Qualis, indexadores, tempo médio)</li>
+                    <li>Matriz de decisão (justificativa das alterações no questionário)</li>
+                    <li>Tabelas quantitativas (perfil, condições acadêmicas, saúde mental)</li>
+                    <li>Categorias qualitativas e seleção de relatos representativos</li>
+                    <li>Estrutura completa do artigo e redação parcial</li>
+                    <li>Submissão à Plataforma Brasil (09/03/2026)</li>
+                    <li>Documentos individuais: Lattes, ORCID, certificado QBA</li>
+                </ul>
+                <p>Todos os arquivos organizados no Google Drive com pastas temáticas.</p>
+            `
+        },
+        { // Slide 12 - Próximos passos
+            title: "Próximos Passos",
+            html: `
+                <h2>⏩ Encaminhamentos</h2>
+                <ul>
+                    <li>Finalizar os cálculos das tabelas (trabalho remunerado, bolsistas por região).</li>
+                    <li>Completar a seção de metodologia (detalhamento da análise quantitativa e qualitativa).</li>
+                    <li>Revisar o artigo e adequar às normas da revista‑alvo.</li>
+                    <li>Escolher a revista para submissão.</li>
+                    <li>Preparar apresentação para a RAIC (maio/2026).</li>
+                    <li>Acompanhar o parecer da Plataforma Brasil.</li>
+                </ul>
+                <div class="highlight">A colaboração tem sido produtiva, e o artigo já está em fase avançada de construção.</div>
+            `
+        },
+        { // Slide 13 - Considerações finais
+            title: "Considerações Finais",
+            html: `
+                <h2>Reflexões</h2>
+                <ul>
+                    <li>A pandemia escancarou desigualdades estruturais já presentes na pós‑graduação.</li>
+                    <li>O aprimoramento do questionário e a análise dos dados confirmam a sobrecarga feminina e o adoecimento psíquico como problemas centrais.</li>
+                    <li>O artigo em construção visa não apenas descrever, mas subsidiar políticas institucionais de cuidado e equidade.</li>
+                    <li>A submissão ética foi concluída e aguardamos o retorno do Comitê de Ética.</li>
+                </ul>
+                <p style="margin-top: 1.5rem;"><strong>Próxima etapa coletiva:</strong> Revisão final do artigo e submissão a periódico Qualis A1/A2.</p>
+                <hr>
+                <p style="font-size: 0.9rem; text-align: center;">Grupo de Pesquisa – Laboratório Cardoso Fontes | IOC/Fiocruz<br>Março de 2026</p>
+            `
+        }
+    ];
+
+    let currentSlide = 0;
+    const slideContentDiv = document.getElementById('slideContent');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const slideCounterSpan = document.getElementById('slideCounter');
+
+    function updateSlide() {
+        const slide = slides[currentSlide];
+        let titleHtml = slide.title ? `<h1>${slide.title}</h1>` : '';
+        slideContentDiv.innerHTML = titleHtml + slide.html;
+        slideCounterSpan.innerText = `${currentSlide+1} / ${slides.length}`;
+        prevBtn.disabled = (currentSlide === 0);
+        nextBtn.disabled = (currentSlide === slides.length-1);
+        // Scroll to top of content
+        slideContentDiv.scrollTop = 0;
+        document.querySelector('.slide-container').scrollTop = 0;
+    }
+
+    function nextSlide() {
+        if (currentSlide < slides.length-1) {
+            currentSlide++;
+            updateSlide();
+        }
+    }
+
+    function prevSlide() {
+        if (currentSlide > 0) {
+            currentSlide--;
+            updateSlide();
+        }
+    }
+
+    prevBtn.addEventListener('click', prevSlide);
+    nextBtn.addEventListener('click', nextSlide);
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') prevSlide();
+        if (e.key === 'ArrowRight') nextSlide();
+    });
+
+    updateSlide();
+</script>
+</body>
+</html>
