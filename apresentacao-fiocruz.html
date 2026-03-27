@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grupo de Pesquisa | Fiocruz</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e1f1a;
+  --forest: #0f4c35;
+  --sage: #2d7a52;
+  --mint: #5db88a;
+  --mist: #e8f4ef;
+  --paper: #f7f9f7;
+  --gold: #c8a84b;
+  --cream: #faf8f3;
+  --line: rgba(15,76,53,0.15);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--ink);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Background texture */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 10% 80%, rgba(45,122,82,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 90% 20%, rgba(15,76,53,0.22) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+/* Grid lines decoration */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+/* --- WRAPPER --- */
+.wrapper {
+  width: 100%;
+  max-width: 960px;
+  position: relative;
+  z-index: 2;
+}
+
+/* --- HEADER STRIP --- */
+.header-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 0 4px;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--mint);
+}
+
+.logo-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+}
+
+.slide-index {
+  font-family: 'Fraunces', serif;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.05em;
+}
+
+/* --- CARD --- */
+.card-shell {
+  background: var(--cream);
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.06),
+    0 40px 80px rgba(0,0,0,0.5),
+    0 8px 24px rgba(0,0,0,0.3);
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Side accent bar */
+.card-shell::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 5px;
+  background: linear-gradient(180deg, var(--sage), var(--mint));
+  border-radius: 4px 0 0 4px;
+}
+
+.slide-body {
+  flex: 1;
+  padding: 3rem 3.5rem 2.5rem 3.5rem;
+  overflow-y: auto;
+}
+
+/* --- SLIDE TYPE: COVER --- */
+.cover {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 440px;
+  position: relative;
+}
+
+.cover-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--sage);
+  border: 1px solid rgba(45,122,82,0.35);
+  padding: 5px 14px;
+  border-radius: 100px;
+  margin-bottom: 2rem;
+  display: inline-block;
+}
+
+.cover h1 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--ink);
+  margin-bottom: 1.2rem;
+  max-width: 680px;
+}
+
+.cover h1 em {
+  font-style: italic;
+  color: var(--sage);
+}
+
+.cover-sub {
+  font-size: 1.05rem;
+  color: #3a5247;
+  max-width: 560px;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+}
+
+.cover-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+  width: 100%;
+}
+
+.meta-item { display: flex; flex-direction: column; gap: 3px; }
+.meta-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sage); font-weight: 600; }
+.meta-value { font-size: 0.9rem; color: var(--ink); font-weight: 500; }
+
+.cover-ornament {
+  position: absolute;
+  right: -20px; top: 20px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(45,122,82,0.12);
+  pointer-events: none;
+}
+.cover-ornament::before {
+  content: '';
+  position: absolute;
+  inset: 20px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(45,122,82,0.08);
+}
+.cover-ornament::after {
+  content: '';
+  position: absolute;
+  inset: 40px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(45,122,82,0.05);
+}
+
+/* --- SECTION SLIDE --- */
+.section-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.slide-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.15;
+  margin-bottom: 2rem;
+}
+
+.slide-title span {
+  color: var(--sage);
+}
+
+/* --- TYPOGRAPHY --- */
+p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #2e4039;
+  margin-bottom: 1rem;
+}
+
+strong { color: var(--forest); font-weight: 600; }
+
+ul, ol {
+  padding-left: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+li {
+  font-size: 0.93rem;
+  line-height: 1.65;
+  color: #2e4039;
+  margin-bottom: 0.5rem;
+  padding-left: 0.3rem;
+}
+
+ul li::marker { color: var(--mint); }
+ol li::marker { color: var(--sage); font-weight: 600; }
+
+/* --- GRID LAYOUTS --- */
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 1.4rem 0; }
+.g3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 1.4rem 0; }
+
+/* --- CARDS --- */
+.info-card {
+  background: var(--paper);
+  border: 1px solid rgba(15,76,53,0.1);
+  border-radius: 16px;
+  padding: 1.3rem 1.4rem;
+  transition: border-color 0.2s;
+}
+.info-card:hover { border-color: rgba(45,122,82,0.3); }
+
+.info-card .card-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.6rem;
+  display: block;
+}
+
+.info-card .card-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.info-card .card-value {
+  font-size: 0.88rem;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+/* --- STAT CARDS --- */
+.stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin: 1.4rem 0; }
+
+.stat-card {
+  background: var(--forest);
+  border-radius: 16px;
+  padding: 1.2rem 1.3rem;
+  color: white;
+  text-align: center;
+}
+
+.stat-number {
+  font-family: 'Fraunces', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--mint);
+  line-height: 1;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.stat-desc {
+  font-size: 0.75rem;
+  opacity: 0.75;
+  line-height: 1.4;
+}
+
+/* --- HIGHLIGHT BOX --- */
+.callout {
+  background: var(--mist);
+  border-left: 3px solid var(--sage);
+  border-radius: 0 12px 12px 0;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
+  font-size: 0.9rem;
+  color: var(--forest);
+  line-height: 1.6;
+}
+
+/* --- QUOTE --- */
+.pull-quote {
+  background: var(--paper);
+  border-radius: 16px;
+  padding: 1.4rem 1.6rem;
+  margin: 1.2rem 0;
+  position: relative;
+  border: 1px solid var(--line);
+}
+.pull-quote::before {
+  content: '\201C';
+  font-family: 'Fraunces', serif;
+  font-size: 4rem;
+  color: var(--mint);
+  opacity: 0.4;
+  position: absolute;
+  top: -8px; left: 14px;
+  line-height: 1;
+}
+.pull-quote p {
+  font-style: italic;
+  padding-left: 1rem;
+  font-size: 0.9rem;
+  color: #2a3f35;
+  margin: 0;
+}
+
+/* --- TABLE --- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  margin: 1.2rem 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+th {
+  background: var(--forest);
+  color: white;
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+}
+td {
+  padding: 9px 14px;
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+}
+tr:nth-child(even) td { background: var(--paper); }
+tr:last-child td { border-bottom: none; }
+
+/* --- DIVIDER --- */
+.divider { height: 1px; background: var(--line); margin: 1.5rem 0; }
+
+/* --- FOOTER / NAV --- */
+.nav-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: white;
+  border-top: 1px solid var(--line);
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: 1.5px solid var(--line);
+  color: var(--forest);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.82rem;
+  padding: 8px 20px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.02em;
+}
+.nav-btn:hover:not(:disabled) {
+  background: var(--forest);
+  color: white;
+  border-color: var(--forest);
+}
+.nav-btn:disabled { opacity: 0.3; cursor: default; }
+
+.nav-btn svg { width: 14px; height: 14px; }
+
+.progress-area { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+
+.progress-bar {
+  width: 120px; height: 2px;
+  background: rgba(15,76,53,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--sage), var(--mint));
+  border-radius: 10px;
+  transition: width 0.4s ease;
+}
+.progress-text {
+  font-size: 0.7rem;
+  color: rgba(0,0,0,0.35);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes appear {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.slide-body {
+  animation: appear 0.38s cubic-bezier(0.25, 0.8, 0.25, 1) both;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 680px) {
+  .slide-body { padding: 2rem 1.8rem; }
+  .g2, .g3 { grid-template-columns: 1fr; }
+  .stat-row { grid-template-columns: repeat(2, 1fr); }
+  .cover h1 { font-size: 2rem; }
+  .cover-ornament { display: none; }
+}
+
+/* Tag chip */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(45,122,82,0.1);
+  color: var(--sage);
+  border: 1px solid rgba(45,122,82,0.2);
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  margin: 2px;
+  letter-spacing: 0.04em;
+}
+
+.two-col { display: grid; grid-template-columns: 1.2fr 1fr; gap: 2.5rem; align-items: start; }
+
+h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--forest);
+  margin-bottom: 0.7rem;
+  margin-top: 1rem;
+}
+
+.name-card {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 1rem 1.2rem;
+  background: var(--paper);
+  border-radius: 14px;
+  margin-bottom: 10px;
+  border: 1px solid var(--line);
+}
+.name-card .avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--sage), var(--mint));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Fraunces', serif;
+  font-size: 0.9rem;
+  color: white;
+  flex-shrink: 0;
+}
+.name-card .nc-name { font-weight: 600; font-size: 0.88rem; color: var(--ink); }
+.name-card .nc-role { font-size: 0.75rem; color: var(--sage); margin-top: 2px; }
+
+.check-list li { list-style: none; padding-left: 0; }
+.check-list li::before {
+  content: '✓';
+  color: var(--mint);
+  font-weight: 700;
+  margin-right: 8px;
+}
+
+.num-highlight {
+  font-family: 'Fraunces', serif;
+  font-size: 1.4rem;
+  color: var(--sage);
+  font-weight: 700;
+}
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+  <!-- HEADER STRIP -->
+  <div class="header-strip">
+    <div class="logo-area">
+      <div class="logo-dot"></div>
+      <span class="logo-text">IOC · Fiocruz · Laboratório Cardoso Fontes</span>
+    </div>
+    <span class="slide-index" id="slideIndex">01 / 13</span>
+  </div>
+
+  <!-- CARD -->
+  <div class="card-shell">
+    <div class="slide-body" id="slideBody"></div>
+    <div class="nav-footer">
+      <button class="nav-btn" id="prevBtn" disabled>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        Anterior
+      </button>
+      <div class="progress-area">
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        <span class="progress-text" id="progressText">Slide 1 de 13</span>
+      </div>
+      <button class="nav-btn" id="nextBtn">
+        Próxima
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+const slides = [
+
+/* 01 — CAPA */
+() => `
+<div class="cover">
+  <div class="cover-ornament"></div>
+  <span class="cover-label">Pesquisa em Saúde Coletiva · Março 2026</span>
+  <h1>Atividades do<br><em>Grupo de Pesquisa</em></h1>
+  <p class="cover-sub">A COVID-19 em comunidades acadêmicas brasileiras: uma análise pós-pandemia das desigualdades de gênero na pós-graduação.</p>
+  <div class="cover-meta">
+    <div class="meta-item">
+      <span class="meta-label">Pesquisadores</span>
+      <span class="meta-value">Roberta Corrêa · Paulo Stephens · Carlos Junior</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Vínculo</span>
+      <span class="meta-value">Bolsista PIBIT · Graduando em Psicologia</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Ano</span>
+      <span class="meta-value">2026</span>
+    </div>
+  </div>
+</div>`,
+
+/* 02 — O PROJETO */
+() => `
+<div class="section-label">Visão Geral</div>
+<h2 class="slide-title">O <span>Projeto</span></h2>
+<p><strong>Objetivo:</strong> Investigar os impactos da pandemia na saúde mental, produtividade acadêmica e condições de permanência de estudantes de pós-graduação, com recorte de gênero.</p>
+<div class="g2">
+  <div class="info-card">
+    <span class="card-icon">👥</span>
+    <span class="card-label">Amostra</span>
+    <span class="card-value"><strong>4.125 mulheres</strong> de todas as regiões do Brasil</span>
+  </div>
+  <div class="info-card">
+    <span class="card-icon">📅</span>
+    <span class="card-label">Período de coleta</span>
+    <span class="card-value">2020–2021 — período crítico da pandemia</span>
+  </div>
+  <div class="info-card">
+    <span class="card-icon">🔬</span>
+    <span class="card-label">Abordagem</span>
+    <span class="card-value">Quali-quantitativa — estatística + relatos</span>
+  </div>
+  <div class="info-card">
+    <span class="card-icon">🏛️</span>
+    <span class="card-label">Instituição</span>
+    <span class="card-value">Laboratório Cardoso Fontes · IOC/Fiocruz</span>
+  </div>
+</div>
+<div class="callout">
+  <strong>Artigo em construção:</strong> "Para além da pandemia: desigualdades estruturais, cuidado e sofrimento psíquico na experiência de mulheres na pós-graduação brasileira"
+</div>`,
+
+/* 03 — EQUIPE */
+() => `
+<div class="section-label">Equipe</div>
+<h2 class="slide-title">Organização do <span>Trabalho</span></h2>
+<div class="name-card">
+  <div class="avatar">PS</div>
+  <div>
+    <div class="nc-name">Dr. Paulo Roberto Stephens</div>
+    <div class="nc-role">Pesquisador responsável · orientação ética e institucional</div>
+  </div>
+</div>
+<div class="name-card">
+  <div class="avatar">RC</div>
+  <div>
+    <div class="nc-name">Dra. Roberta Pires Corrêa</div>
+    <div class="nc-role">Coordenação das reuniões · estrutura do artigo · análise qualitativa</div>
+  </div>
+</div>
+<div class="name-card">
+  <div class="avatar">CJ</div>
+  <div>
+    <div class="nc-name">Carlos Junior Alves de Freitas</div>
+    <div class="nc-role">Revisão do questionário · organização dos dados · tabelas · redação · encaminhamentos éticos</div>
+  </div>
+</div>
+<div class="callout" style="margin-top:1.5rem">
+  Reuniões presenciais semanais + encontros remotos de alinhamento.
+</div>`,
+
+/* 04 — ATIVIDADES */
+() => `
+<div class="section-label">Eixos de Trabalho</div>
+<h2 class="slide-title">Atividades <span>Desenvolvidas</span></h2>
+<div class="g3">
+  <div class="info-card">
+    <span class="card-icon">📚</span>
+    <span class="card-label">Revisão bibliográfica</span>
+    <span class="card-value">Artigos, CGEE, PNPG 2025-2029, IBGE, DIEESE</span>
+  </div>
+  <div class="info-card">
+    <span class="card-icon">✏️</span>
+    <span class="card-label">Revisão do questionário</span>
+    <span class="card-value">Redução, reorganização e padronização metodológica</span>
+  </div>
+  <div class="info-card">
+    <span class="card-icon">📊</span>
+    <span class="card-label">Análise de dados</span>
+    <span class="card-value">Tabelas quantitativas + 5 eixos qualitativos</span>
+  </div>
+  <div class="info-card">
+    <span class="card-icon">🖊️</span>
+    <span class="card-label">Artigo em construção</span>
+    <span class="card-value">Estrutura definida, resultados preliminares</span>
+  </div>
+  <div class="info-card">
+    <span class="card-icon">⚖️</span>
+    <span class="card-label">Encaminhamentos éticos</span>
+    <span class="card-value">Plataforma Brasil, TCLE, Termo de Sigilo</span>
+  </div>
+  <div class="info-card">
+    <span class="card-icon">⚙️</span>
+    <span class="card-label">Automação</span>
+    <span class="card-value">Google Apps Script para geração do questionário</span>
+  </div>
+</div>`,
+
+/* 05 — REVISÃO DO QUESTIONÁRIO */
+() => `
+<div class="section-label">Instrumento de Pesquisa</div>
+<h2 class="slide-title">Revisão do <span>Questionário</span></h2>
+<div class="two-col">
+  <div>
+    <h3>Problemas identificados</h3>
+    <ul>
+      <li>Mais de 50 perguntas — tempo >20 min — risco de abandono</li>
+      <li>Redundâncias e perguntas repetidas</li>
+      <li>Escalas Likert sem âncoras (ex.: 0–4 sem descrição)</li>
+      <li>Ausência de perguntas sobre <strong>perspectivas de futuro</strong></li>
+    </ul>
+  </div>
+  <div>
+    <h3>Versão aprovada</h3>
+    <ul class="check-list">
+      <li><span class="num-highlight">39</span> perguntas obrigatórias, ~10 min</li>
+      <li>Escalas ancoradas em todos os pontos</li>
+      <li>Novo bloco: <strong>"Reflexões sobre o futuro"</strong></li>
+      <li>Módulos opcionais preservados</li>
+    </ul>
+  </div>
+</div>
+<div class="callout">
+  Matriz de decisão documentada no Drive e anexada à Plataforma Brasil.
+</div>`,
+
+/* 06 — AUTOMAÇÃO E ÉTICA */
+() => `
+<div class="section-label">Tecnologia & Ética</div>
+<h2 class="slide-title">Automação & <span>Procedimentos Éticos</span></h2>
+<h3>Script Google Apps Script</h3>
+<p>Gera automaticamente o formulário completo — seções, perguntas, escalas e lógica de ramificação — garantindo padronização e economia de tempo na aplicação.</p>
+<div class="divider"></div>
+<h3>TCLE e Plataforma Brasil</h3>
+<ul class="check-list">
+  <li>TCLE atualizado com canais de apoio (CVV – 188, atendimento psicológico institucional)</li>
+  <li>Anonimização garantida: e-mails excluídos após registro de consentimento</li>
+  <li>Termo de Confidencialidade e Sigilo assinado digitalmente por todos os membros</li>
+  <li>Projeto submetido à Plataforma Brasil em <strong>09/03/2026</strong> — aguardando parecer</li>
+</ul>`,
+
+/* 07 — DADOS QUANTITATIVOS */
+() => `
+<div class="section-label">Resultados</div>
+<h2 class="slide-title">Dados Quantitativos — <span>Perfil</span></h2>
+<div class="stat-row">
+  <div class="stat-card"><span class="stat-number">4.125</span><span class="stat-desc">Mulheres participantes</span></div>
+  <div class="stat-card"><span class="stat-number">96%</span><span class="stat-desc">Instituição pública</span></div>
+  <div class="stat-card"><span class="stat-number">50,5%</span><span class="stat-desc">Idade 18–30 anos</span></div>
+  <div class="stat-card"><span class="stat-number">36%</span><span class="stat-desc">Mães na amostra</span></div>
+</div>
+<div class="g2" style="margin-top:0.5rem">
+  <table>
+    <thead><tr><th>Raça/Cor</th><th>%</th></tr></thead>
+    <tbody>
+      <tr><td>Brancas</td><td>62,9%</td></tr>
+      <tr><td>Pardas</td><td>27,9%</td></tr>
+      <tr><td>Pretas</td><td>9,1%</td></tr>
+    </tbody>
+  </table>
+  <div>
+    <div class="callout">
+      <strong>Bolsistas:</strong> 54,3% (CAPES: 35,2% do total)<br>
+      <strong>Impacto alto na vida acadêmica:</strong> 76,3% (escala 4–5)<br>
+      <strong>Principal responsável pelos filhos:</strong> 17,3%
+    </div>
+  </div>
+</div>`,
+
+/* 08 — SAÚDE MENTAL */
+() => `
+<div class="section-label">Resultados</div>
+<h2 class="slide-title">Saúde Mental & <span>Suporte Institucional</span></h2>
+<div class="g2">
+  <div>
+    <h3>Sofrimento psíquico</h3>
+    <table>
+      <thead><tr><th>Condição</th><th>%</th></tr></thead>
+      <tbody>
+        <tr><td>Desmotivação / Dif. concentração</td><td>82,9%</td></tr>
+        <tr><td>Insônia</td><td>63,9%</td></tr>
+        <tr><td>Ansiedade</td><td>49,3%</td></tr>
+        <tr><td>Depressão</td><td>17,2%</td></tr>
+        <tr><td>Automedicação</td><td>15,1%</td></tr>
+        <tr><td>Pânico</td><td>5,6%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <h3>Suporte institucional</h3>
+    <table>
+      <thead><tr><th>Dado</th><th>%</th></tr></thead>
+      <tbody>
+        <tr><td>Precisaram de apoio psicológico</td><td>73,6%</td></tr>
+        <tr><td>Procuraram ajuda profissional</td><td>35,3%</td></tr>
+        <tr><td>Não solicitaram apoio</td><td>43,0%</td></tr>
+        <tr><td>Coord. não ofereceu apoio</td><td>20,5%</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="pull-quote"><p>"A desmotivação tem dias que me consome e não tem sido fácil alimentar o sonho de se formar pesquisador no nosso país no cenário atual."</p></div>`,
+
+/* 09 — ANÁLISE QUALITATIVA */
+() => `
+<div class="section-label">Análise Qualitativa</div>
+<h2 class="slide-title">Vozes das <span>Mulheres</span></h2>
+<p>Categorização temática em <strong>5 eixos</strong> a partir dos relatos abertos:</p>
+<ol>
+  <li><strong>Impactos acadêmicos da pandemia</strong> — interrupção de campo, atrasos, paralisia produtiva.</li>
+  <li><strong>Sobrecarga doméstica, maternidade e desigualdades de gênero</strong> — mães solo, fechamento de creches, divisão sexual do trabalho.</li>
+  <li><strong>Sofrimento psíquico na pós-graduação</strong> — ansiedade, depressão, culpa, automedicação.</li>
+  <li><strong>Precarização econômica da formação científica</strong> — ausência de bolsa, cortes, impossibilidade de buscar ajuda.</li>
+  <li><strong>Fragilidades institucionais da pós-graduação</strong> — falta de empatia, rigidez de prazos, pressão por produtividade.</li>
+</ol>
+<div class="pull-quote"><p>"Sou mãe solo e sem rede de apoio não durmo para fazer a pesquisa e mesmo assim não consigo produzir."</p></div>`,
+
+/* 10 — ARTIGO */
+() => `
+<div class="section-label">Produção Científica</div>
+<h2 class="slide-title">Artigo: <span>Para além da pandemia</span></h2>
+<div class="g2">
+  <div>
+    <h3>Estrutura do manuscrito</h3>
+    <ul>
+      <li><strong>Introdução</strong> — 7 parágrafos: contexto, impactos, gênero, panorama da PG, lacuna, objetivo</li>
+      <li><strong>Metodologia</strong> — quali-quantitativa, análise temática (Fontoura, 2011)</li>
+      <li><strong>Resultados</strong> — 6 eixos: perfil, impactos, sobrecarga, sofrimento, precarização, institucional</li>
+      <li><strong>Conclusão</strong> — síntese, limitações, implicações para políticas</li>
+    </ul>
+  </div>
+  <div>
+    <h3>Referências-chave</h3>
+    <ul>
+      <li>Staniscuaski et al. (2021)</li>
+      <li>Corrêa et al. (2022)</li>
+      <li>PNPG 2025-2029</li>
+      <li>IBGE (2019)</li>
+      <li>DIEESE (2025)</li>
+    </ul>
+    <div class="callout" style="margin-top:0.8rem">
+      <strong>Objetivo:</strong> Articular dados quantitativos e 4.125 relatos para subsidiar políticas institucionais de cuidado e equidade.
+    </div>
+  </div>
+</div>`,
+
+/* 11 — PRODUTOS PARCIAIS */
+() => `
+<div class="section-label">Entregas</div>
+<h2 class="slide-title">Produtos <span>Parciais</span></h2>
+<div class="g2">
+  <ul class="check-list">
+    <li>Planilha de periódicos (Qualis, indexadores, tempo médio)</li>
+    <li>Matriz de decisão do questionário</li>
+    <li>Tabelas quantitativas completas</li>
+    <li>Categorias qualitativas e relatos representativos</li>
+  </ul>
+  <ul class="check-list">
+    <li>Estrutura completa e redação parcial do artigo</li>
+    <li>Submissão à Plataforma Brasil (09/03/2026)</li>
+    <li>Documentos individuais: Lattes, ORCID, certificado QBA</li>
+    <li>Script de automação do formulário</li>
+  </ul>
+</div>
+<div class="callout">Todos os arquivos organizados no Google Drive com pastas temáticas.</div>`,
+
+/* 12 — PRÓXIMOS PASSOS */
+() => `
+<div class="section-label">Encaminhamentos</div>
+<h2 class="slide-title">Próximos <span>Passos</span></h2>
+<ol>
+  <li>Finalizar cálculos das tabelas — trabalho remunerado, bolsistas por região.</li>
+  <li>Completar seção de metodologia — detalhamento das análises quantitativa e qualitativa.</li>
+  <li>Revisar o artigo e adequar às normas da revista-alvo.</li>
+  <li>Escolher a revista para submissão.</li>
+  <li>Preparar apresentação para a <strong>RAIC (maio/2026)</strong>.</li>
+  <li>Acompanhar o parecer da Plataforma Brasil.</li>
+</ol>
+<div class="callout" style="margin-top:1.5rem">
+  A colaboração tem sido produtiva e o artigo já está em fase avançada de construção.
+</div>`,
+
+/* 13 — CONSIDERAÇÕES FINAIS */
+() => `
+<div class="section-label">Conclusão</div>
+<h2 class="slide-title">Considerações <span>Finais</span></h2>
+<ul>
+  <li>A pandemia escancarou desigualdades estruturais já presentes na pós-graduação.</li>
+  <li>O aprimoramento do questionário e a análise dos dados confirmam a <strong>sobrecarga feminina e o adoecimento psíquico</strong> como problemas centrais.</li>
+  <li>O artigo visa não apenas descrever, mas <strong>subsidiar políticas institucionais</strong> de cuidado e equidade.</li>
+  <li>A submissão ética foi concluída — aguardamos o retorno do Comitê de Ética.</li>
+</ul>
+<div class="divider"></div>
+<div class="cover-meta" style="padding-top:1.2rem">
+  <div class="meta-item">
+    <span class="meta-label">Próxima etapa</span>
+    <span class="meta-value">Revisão final e submissão a periódico Qualis A1/A2</span>
+  </div>
+  <div class="meta-item">
+    <span class="meta-label">Grupo de Pesquisa</span>
+    <span class="meta-value">Laboratório Cardoso Fontes · IOC/Fiocruz · Março 2026</span>
+  </div>
+</div>`
+];
+
+let cur = 0;
+const body = document.getElementById('slideBody');
+const prev = document.getElementById('prevBtn');
+const next = document.getElementById('nextBtn');
+const idx  = document.getElementById('slideIndex');
+const fill = document.getElementById('progressFill');
+const txt  = document.getElementById('progressText');
+
+function render() {
+  body.innerHTML = slides[cur]();
+  const n = slides.length;
+  idx.textContent  = String(cur+1).padStart(2,'0') + ' / ' + String(n).padStart(2,'0');
+  fill.style.width = ((cur+1)/n*100) + '%';
+  txt.textContent  = `Slide ${cur+1} de ${n}`;
+  prev.disabled = cur === 0;
+  next.disabled = cur === n-1;
+  body.scrollTop = 0;
+}
+
+prev.addEventListener('click', () => { if(cur>0) { cur--; render(); } });
+next.addEventListener('click', () => { if(cur<slides.length-1) { cur++; render(); } });
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft')  { if(cur>0) { cur--; render(); } }
+  if (e.key === 'ArrowRight') { if(cur<slides.length-1) { cur++; render(); } }
+});
+
+render();
+</script>
+</body>
+</html>
